@@ -1,0 +1,7 @@
+# Input images must be ignored
+*.jpg
+*.png
+*.jpeg
+
+# Output files must be ignored
+resized/**
