@@ -55,4 +55,4 @@ for index, item in enumerate(im_list):
 
     print_perc((index + 1) / len(im_list))
 
-print("\n\nDone!")  
+print("\n\nDone!")
