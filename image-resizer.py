@@ -2,6 +2,16 @@ from PIL import Image
 import os
 import re
 
+def print_perc(percentage):
+    tot_chars = 20
+    #\r means carriage return
+    print("\r[", end = "")
+    for i in range(0, round(tot_chars*percentage)):
+        print("#", end="")
+    for i in range(round(tot_chars*percentage), tot_chars):
+        print(" ", end="")
+    print("] " + str(round(percentage * 100, 2)) + "%", end = "")
+
 out_folder = "resized"
 
 # list images in current folder
@@ -12,10 +22,11 @@ for index, item in enumerate(im_list):
     print(str(index) + "\t" + item)
 
 print("\n--------------------------------------\n")
-print("Maximum Width: ", end="")
+print("Maximum Width: ", end = "")
 max_w = int(input())
-print("Maximum Height: ", end="")
+print("Maximum Height: ", end = "")
 max_h = int(input())
+print()
 
 # create output folder if it doesn't aready exist
 try:
@@ -23,7 +34,8 @@ try:
 except OSError:
     pass
 
-for item in im_list:
+print_perc(0)
+for index, item in enumerate(im_list):
     im = Image.open(item)
     (w, h) = im.size
 
@@ -41,4 +53,6 @@ for item in im_list:
         # write resized image
         res_im.save(out_folder + "/" + item) 
 
-print("Done!")  
+    print_perc((index + 1) / len(im_list))
+
+print("\n\nDone!")  
